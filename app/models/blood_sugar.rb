@@ -1,0 +1,2 @@
+class BloodSugar < ApplicationRecord
+end
