@@ -3,12 +3,10 @@
   <br>
   <br>
   Blood glucose simulator!
-  <br>
-  <br>
   <p> ------------------------------------- </p>
   <%= form_tag("/foods", method: "post") do %>
     <%= label_tag(:f, "Enter food eaten:") %>
-    <%= text_field_tag(:f) %>
+    <%= text_field_tag :f, nil, :required => true %>
     <%= submit_tag("Submit") %>
   <% end %>
   <br>
@@ -17,7 +15,7 @@
   <br>
   <%= form_tag("/exercises", method: "post") do %>
     <%= label_tag(:e, "Enter exercise done:") %>
-    <%= text_field_tag(:e) %>
+    <%= text_field_tag :e, nil, :required => true %>
     <%= submit_tag("Submit") %>
   <% end %>
   <p> ------------------------------------- </p>

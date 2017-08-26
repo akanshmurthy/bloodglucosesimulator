@@ -2,7 +2,7 @@ require 'test_helper'
 
 class FoodTest < ActiveSupport::TestCase
   def setup
-    @food = Food.new(name: "jelly")
+    @food = foods(:jelly)
   end
   
   test "should be valid" do

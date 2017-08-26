@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ExerciseTest < ActiveSupport::TestCase
   def setup
-    @exercise = Exercise.new(name: "crunches")
+    @exercise = exercises(:crunches)
   end
   
   test "should be valid" do
