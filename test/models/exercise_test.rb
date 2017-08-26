@@ -11,6 +11,6 @@ class ExerciseTest < ActiveSupport::TestCase
 
   test "name should be present" do
     @exercise.name = nil
-    assert_not @user.valid?
+    assert_not @exercise.valid?
   end
 end

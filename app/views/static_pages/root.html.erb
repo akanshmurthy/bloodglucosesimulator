@@ -5,15 +5,21 @@
   Blood glucose simulator!
   <br>
   <br>
-  <input type="text" placeholder="Enter food eaten"/>
-  <button type="submit">Submit</button>
-  <br>
+  <p> ------------------------------------- </p>
+  <%= form_tag("/foods", method: "post") do %>
+    <%= label_tag(:f, "Enter food eaten:") %>
+    <%= text_field_tag(:f) %>
+    <%= submit_tag("Submit") %>
+  <% end %>
   <br>
   and/or
   <br>
   <br>
-  <input type="text" placeholder="Enter exercise done"/>
-  <button type="submit">Submit</button>
-  <br>
-  <br>
+  <%= form_tag("/exercises", method: "post") do %>
+    <%= label_tag(:e, "Enter exercise done:") %>
+    <%= text_field_tag(:e) %>
+    <%= submit_tag("Submit") %>
+  <% end %>
+  <p> ------------------------------------- </p>
+  <%= link_to "Check out your daily graphs", graphs_path %>
 </div>
