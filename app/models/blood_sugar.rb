@@ -17,14 +17,14 @@ class BloodSugar < ApplicationRecord
     end
   end
   
-  def calculate_blood_sugar_if_food_eaten(last_blood_sugar, quantity)
+  def self.calculate_blood_sugar_if_food_eaten(last_blood_sugar, quantity)
     updated_blood_sugar_level = BloodSugar.new
     updated_blood_sugar_level.level = last_blood_sugar.level + quantity
     updated_blood_sugar_level.created_at = Time.now + (60 * 60 * 2)
     updated_blood_sugar_level.save
   end
   
-  def calculate_blood_sugar_if_exercise_done(last_blood_sugar, quantity)
+  def self.calculate_blood_sugar_if_exercise_done(last_blood_sugar, quantity)
     updated_blood_sugar_level = BloodSugar.new
     updated_blood_sugar_level.level = last_blood_sugar.level - quantity
     updated_blood_sugar_level.created_at = Time.now + (60 * 60 * 1)
