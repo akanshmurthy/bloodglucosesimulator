@@ -3,16 +3,24 @@ class FoodsController < ApplicationController
     @food = Food.search(params[:food][:name])
     if @food.nil?
       new_food = Food.new(food_params)
-      new_food.glycemic_index = 50 #arbitrary ... need a better way to gauge the average index
-      new_food.save # don't necessarily need to save
-      BloodSugar.update_blood_sugar_level(new_food.glycemic_index, "food")
+      new_food.glycemic_index = 50 #allows flexibility to enter new foods not in the DB for the future
+      new_food.save
+      create_event("food", new_food)
     else
-      BloodSugar.update_blood_sugar_level(@food.glycemic_index, "food")
+      create_event("food", @food)
     end
     redirect_to root_url
   end
 
   private
+  
+  def create_event(type, food_object)
+    new_event = Event.new
+    new_event.event_type = "food"
+    new_event.index = food_object.glycemic_index
+    new_event.save
+  end
+  
   def food_params
     params.require(:food).permit(:name)
   end

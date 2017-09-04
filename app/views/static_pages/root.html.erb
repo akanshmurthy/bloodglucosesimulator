@@ -6,7 +6,7 @@
   <p> ------------------------------------- </p>
   <%= form_tag("/foods", method: "post") do %>
     <%= label_tag('food_name', "Enter food eaten:") %>
-    <%= text_field_tag 'food[:name]', nil, :required => true %>
+    <%= text_field_tag 'food[name]', nil, :required => true %>
     <%= submit_tag("Submit") %>
   <% end %>
   <br>
@@ -15,7 +15,7 @@
   <br>
   <%= form_tag("/exercises", method: "post") do %>
     <%= label_tag('exercise_name', "Enter exercise done:") %>
-    <%= text_field_tag 'exercise[:name]', nil, :required => true %>
+    <%= text_field_tag 'exercise[name]', nil, :required => true %>
     <%= submit_tag("Submit") %>
   <% end %>
   <p> ------------------------------------- </p>

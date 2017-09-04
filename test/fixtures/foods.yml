@@ -6,5 +6,6 @@
 #
 jelly:
   name: jelly
+  glycemic_index: 50
 
 

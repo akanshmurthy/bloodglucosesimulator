@@ -3,16 +3,24 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.search(params[:exercise][:name])
     if @exercise.nil?
       new_exercise = Exercise.new(exercise_params)
-      new_exercise.exercise_index = 50 #arbitrary ... need a better way to gauge the average index
-      new_exercise.save # don't necessarily need to save
-      BloodSugar.update_blood_sugar_level(new_exercise.exercise_index, "exercise")
+      new_exercise.exercise_index = 50 #allows flexibility to enter new foods not in the DB for the future
+      new_exercise.save
+      create_event("exercise", new_exercise)
     else
-      BloodSugar.update_blood_sugar_level(@exercise.exercise_index, "exercise")
+      create_event("exercise", @exercise)
     end
     redirect_to root_url
   end
 
   private
+  
+  def create_event(type, exercise_object)
+    new_event = Event.new
+    new_event.event_type = "exercise"
+    new_event.index = exercise_object.exercise_index
+    new_event.save
+  end
+  
   def exercise_params
     params.require(:exercise).permit(:name)
   end

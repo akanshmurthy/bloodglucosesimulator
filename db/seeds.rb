@@ -137,3 +137,17 @@ exercises = {
 exercises.each do |k,v|
   Exercise.create(name: k, exercise_index: v)
 end
+
+
+events = [
+  ["food", 50, Time.now - 40000], 
+  ["food", 30, Time.now - 35000], 
+  ["food", 60, Time.now - 30000], 
+  ["exercise", 50, Time.now - 25000], 
+  ["food", 60, Time.now - 20000], 
+  ["exercise", 100, Time.now - 15000]
+]
+
+events.each do |event|
+  Event.create(event_type: event[0], index: event[1], created_at: event[2])
+end

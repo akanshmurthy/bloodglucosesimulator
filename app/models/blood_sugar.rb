@@ -2,6 +2,7 @@ class BloodSugar < ApplicationRecord
   validates :level, presence: true
   
   def self.update_blood_sugar_level(quantity, type)
+    
     last_blood_sugar = BloodSugar.where("created_at >= ?", Time.zone.now.beginning_of_day).last
     
     if last_blood_sugar.nil?
@@ -30,5 +31,5 @@ class BloodSugar < ApplicationRecord
     updated_blood_sugar_level.created_at = Time.now + (60 * 60 * 1)
     updated_blood_sugar_level.save
   end
-    
+
 end
