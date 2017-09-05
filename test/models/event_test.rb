@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
   def setup
-    @event = exercises(:breakfast)
+    @event = events(:breakfast)
   end
   
   test "should be valid" do
@@ -10,7 +10,7 @@ class EventTest < ActiveSupport::TestCase
   end
 
   test "type should be present" do
-    @event.type = nil
+    @event.event_type = nil
     assert_not @event.valid?
   end
 end

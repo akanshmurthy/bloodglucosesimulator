@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+  validates :event_type, presence: true
   
   def self.calculate_blood_sugar(glycation = false)
     calculate_increments_based_on_events

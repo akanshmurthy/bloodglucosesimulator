@@ -38,8 +38,8 @@ bundle exec rake test
 
 ## Features
 
-My minimum viable product allows
-  - users to enter in food eaten or exercise done (will match to database entries if they exist or create 
+My minimum viable product allows users to
+  - enter in food eaten or exercise done (will match to database entries if they exist or create 
     new items if they don't exist)
   - look at graphs, utilizing the Gruff gem, of blood glucose levels or glycation levels per day
   
@@ -51,16 +51,20 @@ entered, while calculating and saving blood sugars to the DB as well, based on
 those items and all items up to that point starting from the beginning of the day.
 However, that would result in a lot of blood sugar items being saved to the DB
 as I was planning to save values for each minute. I was either going to do a cron
-or background job for the calculation. But, I found out that that would take too much
-time. Forgoing that, I decided to try another approach. I saved food and exercise 
-entries as events with the relevant glycemic or exercise indices. Then, I grabbed
-all events past midnight, calculated increments that each event would cause, 
-and then calculate the blood sugar for all minutes of the day in memory.
+or background job for the saving. But, I found out that that would take too much
+time to implement and cause heavy load on the DB. Forgoing that, I decided to try 
+another approach. I saved food and exercise entries as events with the relevant 
+glycemic or exercise indices. Then, I grabbed all events past midnight, 
+calculated increments that each event would cause, and then calculate the 
+blood sugar for all minutes of the day in memory.
 
 ## Future considerations to scale current implementation
 
   - have a background job calculate the blood sugar levels
   - use a cache for the latest values so that visiting the graph page doesn't trigger recalculations every time
-  - improve test coverage
-  - improve the user interface
+  - add indexes on search terms for faster lookup
+  - use 3rd party API to estimate glycemic or exercise index of new items not in the DB
+  - improve test coverage for algorithm/calculations
+  - improve the user interface with an autocomplete for food/exercise items that already exist and a more interactive graphing library
+  - use design patterns to abstract out common code (search, graph, and calculations) to helper files or modules
 
